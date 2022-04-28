@@ -1,3 +1,4 @@
+# 配置爬虫规则
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
