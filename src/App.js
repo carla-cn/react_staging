@@ -1,77 +1,26 @@
 import React, { Component } from 'react'
-
-import Footer from './components/Footer'
-import Header from './components/Header'
-import List from './components/List'
-
-import './App.css'
+import axios from 'axios'
 
 export default class App extends Component {
-	state = {
-		todos: [
-			{
-				id: '001',
-				name: '吃饭',
-				done: true,
-			},
-			{
-				id: '002',
-				name: '睡觉',
-				done: false,
-			},
-			{
-				id: '003',
-				name: '打代码',
-				done: false,
-			},
-			{
-				id: '004',
-				name: '逛街',
-				done: true,
-			},
-		],
+	getStudentsData = () => {
+		axios.get('http://localhost:3000/api1/students').then(
+			res => console.log('成功了', res),
+			err => console.log('失败了', err)
+		)
 	}
 
-	/**
-	 * 状态在哪里，操作状态的方法就在哪里
-	 */
-
-	addTodo = todoObj => {
-		this.setState({ todos: [todoObj, ...this.state.todos] })
-	}
-
-	updateTodo = (id, doneState) => {
-		const { todos } = this.state
-		const newTodos = todos.map(todoObj => {
-			if (todoObj.id === id) return { ...todoObj, done: doneState }
-			return todoObj
-		})
-		this.setState({ todos: newTodos })
-	}
-
-	deleteDodo = id => {
-		const { todos } = this.state
-		this.setState({ todos: todos.filter(todoObj => todoObj.id !== id) })
-	}
-
-	checkAllTodo = done => {
-		const { todos } = this.state
-		this.setState({ todos: todos.map(todoObj => ({ ...todoObj, done })) })
-	}
-
-	clearTodoDone = () => {
-		const { todos } = this.state
-		this.setState({ todos: todos.filter(todoObj => !todoObj.done) })
+	getCarsData = () => {
+		axios.get('http://localhost:3000/api2/cars').then(
+			res => console.log('成功拿到汽车', res),
+			err => console.log('失败', err)
+		)
 	}
 
 	render() {
-		const { todos } = this.state
-		const { addTodo, updateTodo, deleteDodo } = this
 		return (
-			<div className="todo-container">
-				<Header addTodo={addTodo} />
-				<List updateTodo={updateTodo} todos={todos} deleteDodo={deleteDodo} />
-				<Footer todos={todos} checkAllTodo={this.checkAllTodo} clearTodoDone={this.clearTodoDone} />
+			<div>
+				<button onClick={this.getStudentsData}>顶我获取学生数据</button>
+				<button onClick={this.getCarsData}>顶我获取汽车数据</button>
 			</div>
 		)
 	}
