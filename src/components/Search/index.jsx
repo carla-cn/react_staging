@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import PubSub from 'pubsub-js'
 
 export default class index extends Component {
 	search = () => {
 		const {
 			inputEl: { value: keyWord },
-			props: { updateState },
 		} = this
-		updateState({ isFirstSearch: false, isLoading: true })
-		// 以自己的域名发请求可以省略域名
+		PubSub.publish('listState', { isFirstSearch: false, isLoading: true })
 		axios.get(`/api/search/users?q=${keyWord}`).then(
-			res => updateState({ users: res.data.items, isLoading: false }),
-			err => updateState({ isLoading: false, err: err.message })
+			res => PubSub.publish('listState', { users: res.data.items, isLoading: false }),
+			err => PubSub.publish('listState', { isLoading: false, err: err.message })
 		)
 	}
 
