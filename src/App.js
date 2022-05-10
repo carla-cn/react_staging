@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
 
-import { Link, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 /**
  * 路由组件  pages
  */
-import Header from './components/Header'
 import About from './pages/About'
+import Home from './pages/Home'
 /**
  * 一般组件  components
  */
-import Home from './pages/Home'
+import Header from './components/Header'
+import MyNavLink from './components/MyNavLink'
 
 export default class App extends Component {
 	render() {
@@ -26,21 +26,12 @@ export default class App extends Component {
 				<div className="row">
 					<div className="col-xs-2 col-xs-offset-2">
 						<div className="list-group">
-							{/* 原生html中，靠<a></a>跳转不同页面 */}
-							{/* <a className="list-group-item active" href="./about.html">
+							<MyNavLink className="list-group-item" to="/about">
 								About
-							</a>
-							<a className="list-group-item" href="./home.html">
+							</MyNavLink>
+							<MyNavLink className="list-group-item" to="/home">
 								Home
-							</a> */}
-
-							{/* 在React中，靠路由链接实现组件切换--编写路由链接 */}
-							<NavLink className="list-group-item" to="/about">
-								About
-							</NavLink>
-							<NavLink className="list-group-item" to="/home">
-								Home
-							</NavLink>
+							</MyNavLink>
 						</div>
 					</div>
 					<div className="col-xs-6">
