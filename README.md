@@ -1,8 +1,30 @@
-## 一、路由的基本使用
+## 一、路由组件与一般组件
 
-1. 明确好界面中的导航区、展示区
-2. 导航区的 a 标签改为 Link<br/>
-   `<Link to="/xxxx">demo</Link>`
-3. 展示区写 Route 标签进行路径的匹配<br/>
-   `<Route path="/xxxx" component={Demo} />`
-4. App 的最外层包裹一个 BrowserRouter 或 HashRouter
+1. 写法不同<br>
+   一般组件：`<Demo />`<br>
+   路由组件：`<Route path="/demo" component={Demo} />`
+2. 存放位置不同<br>
+   一般组件：`components`<br>
+   路由组件：`pages`
+3. 接收到的 props 不同：
+   一般组件：写组件标签时传递了什么就能接收到什么
+   路由组件：接收到三个固定的属性
+   ```javascript
+   history: {
+     go,
+     goBack,
+     goForward,
+     push,
+     replace
+   }
+   location: {
+     pathname: '/about',
+     search: '',
+     state: undefined
+   }
+   match: {
+     params: {},
+     path: '/about',
+     url: '/about',
+   }
+   ```
