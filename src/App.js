@@ -27,10 +27,11 @@ export default class App extends Component {
 				<div className="row">
 					<div className="col-xs-2 col-xs-offset-2">
 						<div className="list-group">
-							<MyNavLink className="list-group-item" to="/about">
+							{/* 该路径刷新后请求bootstrap.css：http://localhost:3000/a/b/css/bootstrap.css */}
+							<MyNavLink className="list-group-item" to="/a/b/about">
 								About
 							</MyNavLink>
-							<MyNavLink className="list-group-item" to="/home">
+							<MyNavLink className="list-group-item" to="/a/b/home">
 								Home
 							</MyNavLink>
 						</div>
@@ -39,9 +40,9 @@ export default class App extends Component {
 						<div className="panel">
 							<div className="panel-body">
 								<Switch>
-									<Route path="/about" component={About} />
-									<Route path="/home" component={Home} />
-									<Route path="/home" component={Test} />
+									<Route path="/a/b/about" component={About} />
+									<Route path="/a/b/home" component={Home} />
+									<Route path="/a/b/home" component={Test} />
 								</Switch>
 							</div>
 						</div>
