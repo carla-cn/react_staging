@@ -4,12 +4,12 @@ import { Link, Route } from 'react-router-dom'
 /**
  * 路由组件  pages
  */
-import Header from './components/Header'
 import About from './pages/About'
+import Home from './pages/Home'
 /**
  * 一般组件  components
  */
-import Home from './pages/Home'
+import Header from './components/Header'
 
 export default class App extends Component {
 	render() {
