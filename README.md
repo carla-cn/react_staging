@@ -1,11 +1,13 @@
-## 一、路由的严格匹配和模糊匹配
+## 一、Redirect 的使用
 
-1. 默认使用的是模糊匹配（【输入的路径】必须包含要【匹配的路径】，且顺序要一致）
+1. 一般写在所有路由的最下方，当所有路由都无法匹配时，跳转到 Redirect 指定的路由
 
-2. 开启严格匹配<br>
+2. 具体编码<br>
 
    ```jsx
-   <Route exact={true} path="/about" component={About} />
+   <Switch>
+   	<Route path="/about" component={About} />
+   	<Route path="/home" component={Home} />
+   	<Redirect to="/home" />
+   </Switch>
    ```
-
-3. 严格模式不要随便开启，需要再开，有些时候开启会导致无法继续匹配二级路由
