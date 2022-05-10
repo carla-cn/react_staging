@@ -6,7 +6,6 @@ import { Route, Switch } from 'react-router-dom'
  */
 import About from './pages/About'
 import Home from './pages/Home'
-import Test from './pages/Test'
 /**
  * 一般组件  components
  */
@@ -28,10 +27,10 @@ export default class App extends Component {
 					<div className="col-xs-2 col-xs-offset-2">
 						<div className="list-group">
 							{/* 该路径刷新后请求bootstrap.css：http://localhost:3000/a/b/css/bootstrap.css */}
-							<MyNavLink className="list-group-item" to="/a/b/about">
+							<MyNavLink className="list-group-item" to="/about/a/b">
 								About
 							</MyNavLink>
-							<MyNavLink className="list-group-item" to="/a/b/home">
+							<MyNavLink className="list-group-item" to="/home/a/b">
 								Home
 							</MyNavLink>
 						</div>
@@ -40,9 +39,8 @@ export default class App extends Component {
 						<div className="panel">
 							<div className="panel-body">
 								<Switch>
-									<Route path="/a/b/about" component={About} />
-									<Route path="/a/b/home" component={Home} />
-									<Route path="/a/b/home" component={Test} />
+									<Route path="/about" component={About} />
+									<Route exact path="/home" component={Home} />
 								</Switch>
 							</div>
 						</div>
