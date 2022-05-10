@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 /**
  * 路由组件  pages
  */
 import About from './pages/About'
 import Home from './pages/Home'
+import Test from './pages/Test'
 /**
  * 一般组件  components
  */
@@ -37,8 +38,11 @@ export default class App extends Component {
 					<div className="col-xs-6">
 						<div className="panel">
 							<div className="panel-body">
-								<Route path="/about" component={About} />
-								<Route path="/home" component={Home} />
+								<Switch>
+									<Route path="/about" component={About} />
+									<Route path="/home" component={Home} />
+									<Route path="/home" component={Test} />
+								</Switch>
 							</div>
 						</div>
 					</div>
