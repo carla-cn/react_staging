@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
 
 import { Link, Route } from 'react-router-dom'
 /**
@@ -34,12 +35,12 @@ export default class App extends Component {
 							</a> */}
 
 							{/* 在React中，靠路由链接实现组件切换--编写路由链接 */}
-							<Link className="list-group-item active" to="/about">
+							<NavLink className="list-group-item" to="/about">
 								About
-							</Link>
-							<Link className="list-group-item" to="/home">
+							</NavLink>
+							<NavLink className="list-group-item" to="/home">
 								Home
-							</Link>
+							</NavLink>
 						</div>
 					</div>
 					<div className="col-xs-6">
