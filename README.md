@@ -1,13 +1,5 @@
-## 一、Redirect 的使用
+## 一、嵌套子路由
 
-1. 一般写在所有路由的最下方，当所有路由都无法匹配时，跳转到 Redirect 指定的路由
+1. 嵌套子路由时要写上父路由的 path 值
 
-2. 具体编码<br>
-
-   ```jsx
-   <Switch>
-   	<Route path="/about" component={About} />
-   	<Route path="/home" component={Home} />
-   	<Redirect to="/home" />
-   </Switch>
-   ```
+2. 路由的匹配是按照注册路由的顺序进行的
