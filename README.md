@@ -1,5 +1,7 @@
-## 一、嵌套子路由
+## 一、向路由组件传递 params 参数
 
-1. 嵌套子路由时要写上父路由的 path 值
+1. 路由链接(携带参数)：`<Link to="/home/message/detail/01/消息1">消息1</Link>`
 
-2. 路由的匹配是按照注册路由的顺序进行的
+2. 注册路由(声明接收)：`<Route path="/home/message/detail/:id/:title" component={Detail} />`
+
+3. 接收参数：`const { params: { id, title }, } = this.props.match`
