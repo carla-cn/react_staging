@@ -29,15 +29,15 @@ export default class Message extends Component {
 				<ul>
 					{messages.map(({ id, title }) => (
 						<li key={id}>
-							{/* 向路由组件传递params参数 */}
-							<Link to={`/home/message/detail/${id}/${title}`}>{title}</Link>&nbsp;&nbsp;
+							{/* 向路由组件传递 search 参数 */}
+							<Link to={`/home/message/detail?id=${id}&title=${title}`}>{title}</Link>&nbsp;&nbsp;
 						</li>
 					))}
 				</ul>
 				<hr />
-				{/* 声明要接收的params变量 */}
+				{/* search 参数无需声明接收，正常注册路由即可 */}
 				<Switch>
-					<Route path="/home/message/detail/:id/:title" component={Detail} />
+					<Route path="/home/message/detail" component={Detail} />
 				</Switch>
 			</div>
 		)
