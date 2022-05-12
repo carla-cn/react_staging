@@ -29,14 +29,15 @@ export default class Message extends Component {
 				<ul>
 					{messages.map(({ id, title }) => (
 						<li key={id}>
-							{/* 向路由组件传递 state 参数 */}
-							<Link to={{ pathname: '/home/message/detail', state: { id, title } }}>{title}</Link>
+							{/* 开启replace模式，默认的是push模式 */}
+							<Link replace to={{ pathname: '/home/message/detail', state: { id, title } }}>
+								{title}
+							</Link>
 							&nbsp;&nbsp;
 						</li>
 					))}
 				</ul>
 				<hr />
-				{/* state 参数无需声明接收，正常注册路由即可 */}
 				<Switch>
 					<Route path="/home/message/detail" component={Detail} />
 				</Switch>
