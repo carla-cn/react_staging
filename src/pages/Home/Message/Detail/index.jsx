@@ -34,14 +34,14 @@ export default class Detail extends Component {
 	render() {
 		console.log(this.props)
 		const { contents } = this.state
-		/* 接收 search 参数 */
-		const { id, title } = qs.parse(this.props.location.search.split('?')[1])
-		const contentObj = contents.find(item => item.id === id)
+		/* 接收 state 参数 */
+		const { id, title } = this.props.state || {}
+		const contentObj = contents.find(item => item.id === id) || {}
 		return (
 			<ul>
 				<li>ID: {id}</li>
 				<li>TITLE: {title} </li>
-				<li>CONTNET: {contentObj?.content}</li>
+				<li>CONTNET: {contentObj.content}</li>
 			</ul>
 		)
 	}
