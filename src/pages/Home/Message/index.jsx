@@ -29,11 +29,19 @@ export default class Message extends Component {
 				<ul>
 					{messages.map(({ id, title }) => (
 						<li key={id}>
-							{/* 开启replace模式，默认的是push模式 */}
-							<Link replace to={{ pathname: '/home/message/detail', state: { id, title } }}>
-								{title}
-							</Link>
+							<Link to={{ pathname: '/home/message/detail', state: { id, title } }}>{title}</Link>
 							&nbsp;&nbsp;
+							<button
+								onClick={() => this.props.history.replace('/home/message/detail', { id, title })}
+							>
+								replace跳转
+							</button>{' '}
+							&nbsp;
+							<button
+								onClick={() => this.props.history.push('/home/message/detail', { id, title })}
+							>
+								push跳转
+							</button>
 						</li>
 					))}
 				</ul>
@@ -41,6 +49,18 @@ export default class Message extends Component {
 				<Switch>
 					<Route path="/home/message/detail" component={Detail} />
 				</Switch>
+				<button onClick={() => this.props.history.goBack()}>goBack</button> &nbsp;
+				<button onClick={() => this.props.history.goForward()}>goForward</button> &nbsp;
+				<button
+					onClick={() => {
+						// 前进两步
+						this.props.history.go(2)
+						// 后退两步
+						this.props.history.go(-2)
+					}}
+				>
+					go
+				</button>
 			</div>
 		)
 	}
