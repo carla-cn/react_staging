@@ -49,18 +49,6 @@ export default class Message extends Component {
 				<Switch>
 					<Route path="/home/message/detail" component={Detail} />
 				</Switch>
-				<button onClick={() => this.props.history.goBack()}>goBack</button> &nbsp;
-				<button onClick={() => this.props.history.goForward()}>goForward</button> &nbsp;
-				<button
-					onClick={() => {
-						// 前进两步
-						this.props.history.go(2)
-						// 后退两步
-						this.props.history.go(-2)
-					}}
-				>
-					go
-				</button>
 			</div>
 		)
 	}
