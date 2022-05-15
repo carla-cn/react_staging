@@ -1,7 +1,13 @@
-# 一、求和完整版 redux 使用
+# 一、求和 redux 异步 action 版
 
 新增文件
 
-1. countAction.js 专门用于创建 action 对象
+1. 明确：延迟的动作不想交给组件自身，想交给 action
 
-2. constants.js 放置由于编码疏忽写错 action 中的 type
+2. 何时需要异步 action：想要对状态进行操作，但是具体的数据靠异步任务返回
+
+3. 具体编码：
+   - `yarn add redux-thunk`，并配置在 store.js 中
+   - 创建 action 的函数不在返回一般对象，而是一个函数，该函数中写异步任务
+   - 异步任务有结果后，分发一个同步 action 去真正操作数据
+   - 备注：异步 action 不是必须要写的，完全可以自己等待异步任务结束拿到结果后再去分发同步 action
