@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
+// 引入store,获取redux中的state
 import store from './redux/store'
+// 引入actionCreator，专门用于创建action对象
+import { createDecrementAction, createIncrementAction } from './redux/countAction'
 
 import './App.css'
 
@@ -9,17 +12,17 @@ export default class App extends Component {
 
 		switch (type) {
 			case 'increment':
-				store.dispatch({ type: 'increment', data })
+				store.dispatch(createIncrementAction(data))
 				break
 			case 'decrement':
-				store.dispatch({ type: 'decrement', data })
+				store.dispatch(createDecrementAction(data))
 				break
 			case 'incrementIfOdd':
-				if (store.getState() % 2 !== 0) store.dispatch({ type: 'increment', data })
+				if (store.getState() % 2 !== 0) store.dispatch(createIncrementAction(data))
 				break
 			case 'incrementAsync':
 				setTimeout(() => {
-					store.dispatch({ type: 'increment', data })
+					store.dispatch(createIncrementAction(data))
 				}, 500)
 				break
 
@@ -27,15 +30,6 @@ export default class App extends Component {
 				break
 		}
 	}
-
-	/**
-	 * 当 store 的状态改变时，刷新页面(执行render)，可以放在 index.js 中，就可以不用在每个需要sotre的组件中都写一遍
-	 */
-	// componentDidMount() {
-	// 	store.subscribe(() => {
-	// 		this.setState({})
-	// 	})
-	// }
 
 	render() {
 		return (
