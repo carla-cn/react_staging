@@ -1,18 +1,16 @@
-# 一、BrowserRouter 与 Hashrouter 的区别
+# 一、求和精简版 redux 使用
 
-1. 底层原理不一样：
+1. store.js
 
-   - BrowserRouter 使用的是 H5 的 history API,不兼容 IE9 及以下的版本
-   - HashRouter 使用的是 URL 的哈希值
+   - 引入 redux 中的 createStore 函数，创建一个 store
+   - createStore 调用时要传入一个为其服务的 reducer
+   - 暴露 store 对象
 
-2. path 表现形式不一样
+2. countReducer.js
 
-   - BrowserRouter 的路径中没有#，例如：`localhost:3000/demo/test`
-   - HashRouter 的路径包含#，例如：`localhost:3000/#/demo/test`
+   - reducer 本质上是一个函数，接收：preState，action，返回加工后的状态
+   - reducer 有两个作用：初始化状态，加工状态
+   - reducer 被第一次调用时，是 store 自动触发的，传递的 preState 是 undefined
 
-3. 刷新后对路由 state 参数的影响
-
-   - BrowserRouter 没有任何影响，因为 state 保存在 history 对象中
-   - HashRouter 刷新后会导致路由的 state 参数丢失
-
-4. 备注：HashRouter 可以用于解决一些路径错误相关的问题
+3. 在 index.js 中检测 store 中状态的改变，一旦发生改变重新渲染`<App />`<br />
+   备注：redux 只负责管理状态，至于状态的改变驱动着页面的展示，需要自己写
