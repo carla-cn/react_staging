@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // 引入store,获取redux中的state
 import store from './redux/store'
 // 引入actionCreator，专门用于创建action对象
-import { createDecrementAction, createIncrementAction } from './redux/countAction'
+import { createDecrementAction, createIncrementAction, createIncrementAsyncAction } from './redux/countAction'
 
 import './App.css'
 
@@ -21,9 +21,7 @@ export default class App extends Component {
 				if (store.getState() % 2 !== 0) store.dispatch(createIncrementAction(data))
 				break
 			case 'incrementAsync':
-				setTimeout(() => {
-					store.dispatch(createIncrementAction(data))
-				}, 500)
+				store.dispatch(createIncrementAsyncAction(data))
 				break
 
 			default:
