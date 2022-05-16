@@ -1,39 +1,59 @@
-// 引入CountUI组件
-import CountUI from '../../components/Count'
-
-// 引入connect用于连接UI组件与redux
 import { connect } from 'react-redux'
 
 import {
 	createIncrementAction,
 	createDecrementAction,
 	createIncrementAsyncAction,
-} from '../../redux/countAction.js'
+} from '../../redux/actions/count.js'
 
-/**
- * 1. mapStateToProps函数返回的是一个对象：
- * 2. 返回的对象中的key就作为传递给UI组件props的key，value就作为传递给UI组件props的value
- * 3. mapStateToProps用于传递状态
- */
-const mapStateToProps = state => ({ count: state })
+import React, { Component } from 'react'
 
-/**
- * 1. mapDispatchToProps函数返回的是一个对象：
- * 2. 返回的对象中的key就作为传递给UI组件props的key，value就作为传递给UI组件props的value
- * 3. mapDispatchToProps用于传递操作状态的方法
- */
-// const mapDispatchToProps = dispatch => ({
-// 	increment: data => dispatch(createIncrementAction(data)),
-// 	decrement: data => dispatch(createDecrementAction(data)),
-// 	incrementAsync: (data, time) => dispatch(createIncrementAsyncAction(data, time)),
-// })
+class Count extends Component {
+	getRes = type => {
+		const data = this.selectedData || 1
+		const { increment, decrement, incrementAsync, count } = this.props
+		switch (type) {
+			case 'increment':
+				increment(data)
+				break
+			case 'decrement':
+				decrement(data)
+				break
+			case 'incrementIfOdd':
+				if (count % 2 !== 0) increment(data)
+				break
+			case 'incrementAsync':
+				incrementAsync(data, 500)
+				break
 
-/* mapDispatchToProps的简写 */
-const mapDispatchToProps = {
+			default:
+				break
+		}
+	}
+
+	render() {
+		const { count, personNum } = this.props
+		return (
+			<div style={{ margin: 200, marginBottom: 0 }}>
+				<h2>Count组件，下方组件的人数为{personNum}</h2>
+				<h4>求和的结果为：{count}</h4>
+				<select onChange={e => (this.selectedData = Number(e.target.value))}>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</select>{' '}
+				&nbsp;
+				<button onClick={() => this.getRes('increment')}>+</button> &nbsp;
+				<button onClick={() => this.getRes('decrement')}>-</button> &nbsp;
+				<button onClick={() => this.getRes('incrementIfOdd')}>状态为奇数时+</button> &nbsp;
+				<button onClick={() => this.getRes('incrementAsync')}>异步+</button>
+			</div>
+		)
+	}
+}
+
+export default connect(state => ({ count: state.count, personNum: state.persons.length }), {
 	increment: createIncrementAction,
 	decrement: createDecrementAction,
 	incrementAsync: createIncrementAsyncAction,
-}
-
-// 使用connet()()创建并暴露一个Count的容器组件
-export default connect(mapStateToProps, mapDispatchToProps)(CountUI)
+})(Count)

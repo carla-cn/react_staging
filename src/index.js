@@ -13,9 +13,3 @@ root.render(
 		<App />
 	</Provider>
 )
-
-/* 使用了react-redux不用再自己监测 */
-// 检测redux中状态的改变，如redux的状态发生了改变，那么重新渲染App组件
-// store.subscribe(() => {
-// 	root.render(<App />)
-// })
