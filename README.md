@@ -1,7 +1,10 @@
-# 一、求和 redux 数据共享
+# 一、纯函数
 
-明确两个概念
+1. 一类特别的函数：只要是同样的输入(实参)，必定得到同样的输出(返回)
+2. 必须遵守以下一些约束：
 
-1. 定义一个 Person 组件，和 Count 组件通过 redux 共享数据
-2. 为 Person 组件编写：reducer/action，配置 constant 常量
-3. 重点：Person 的 reducer 和 Count 的 reducer 要使用 combineReducers 进行合并，合并后的总状态值一个`对象`
+   - 不得改写参数数据
+   - 不会产生任何副作用，例如网络请求，输入和输出设备
+   - 不能调用 Date.now()或者 Math.random()等不纯的方法
+
+3. redux 的 reducer 函数必须是一个纯函数
