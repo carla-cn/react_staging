@@ -1,9 +1,5 @@
-# 一、求和 redux-react 开发者工具使用
+# 一、求和 redux 求和案例最终版
 
-1. `yarn add redux-devtools-extension`
+1. 所有变量名字要规范，尽量触发对象的简写形式
 
-2. store 中进行配置
-   ```javascript
-   import { composeWithDevTools } from 'redux-devtools-extension'
-   export default createStore(allReducer, composeWithDevTools(applyMiddleware(thunk)))
-   ```
+2. reducer 文件夹中，编写 index.js 专门用于汇总并暴露所有的 reducer
